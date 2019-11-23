@@ -9,7 +9,7 @@ create table customer
     constraint Customer_registrycode_uindex
         unique (registrycode)
 );
-
+--just run the code
 create table reservation
 (
     id           int auto_increment
