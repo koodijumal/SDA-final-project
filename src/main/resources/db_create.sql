@@ -2,12 +2,12 @@ create table Customer
 (
   id           int auto_increment
     primary key,
-  firstname    varchar(30) not null,
-  lastname     varchar(30) not null,
-  companyname  varchar(50) null,
-  registrycode varchar(50) not null,
+  first_name    varchar(30) not null,
+  last_name     varchar(30) not null,
+  company_name  varchar(50) null,
+  registry_code varchar(50) not null,
   constraint Customer_registrycode_uindex
-    unique (registrycode)
+    unique (registry_code)
 );
 
 create table Reservation
@@ -17,8 +17,8 @@ create table Reservation
   room         int         not null comment 'referring to room table',
   customer     int         not null comment 'referring to customer table
 ',
-  checkindate  date        not null,
-  checkoutdate date        not null,
+  checkin_date  date        not null,
+  checkout_date date        not null,
   payment      varchar(30) not null comment 'Possible values:
 not paid, paid, partially paid',
   status       varchar(30) not null comment 'possible values:

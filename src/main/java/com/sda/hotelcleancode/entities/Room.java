@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
@@ -16,19 +16,24 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class Room {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotNull
     private RoomType type;
 
-    @NotBlank
+    @NotNull
     private Integer maxPeople;
 
     private RoomBedType bedType;
 
-    @NotBlank
+    @NotNull
     private BigDecimal price;
-    //just testing
 
+    public Room(@NotNull RoomType type, @NotNull Integer maxPeople, RoomBedType bedType, @NotNull BigDecimal price) {
+        this.type = type;
+        this.maxPeople = maxPeople;
+        this.bedType = bedType;
+        this.price = price;
+    }
 }
