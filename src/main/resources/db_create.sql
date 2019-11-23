@@ -40,4 +40,4 @@ twin, full',
 '
 );
 
---uus tabel
+--uus tabel--
