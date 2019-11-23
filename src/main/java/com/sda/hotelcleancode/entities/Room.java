@@ -20,14 +20,15 @@ public class Room {
     private Integer id;
 
     @NotBlank
-    private String type;
+    private RoomType type;
 
     @NotBlank
     private Integer maxPeople;
 
-    private String bedType;
+    private RoomBedType bedType;
 
     @NotBlank
     private BigDecimal price;
+    //just testing
 
 }
