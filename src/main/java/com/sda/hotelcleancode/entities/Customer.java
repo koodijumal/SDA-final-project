@@ -17,24 +17,24 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String firstname;
+    private String firstName;
 
-    private String lastname;
+    private String lastName;
 
-    private String companyname;
+    private String companyName;
 
     @Column(unique = true)
-    private String registrycode;
+    private String registryCode;
 
     public Customer(String firstname, String lastname, String registrycode) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.lastname = registrycode;
+        this.firstName = firstname;
+        this.lastName = lastname;
+        this.lastName = registrycode;
     }
 
     public Customer(String companyname, String registrycode) {
-        this.companyname = companyname;
-        this.registrycode = registrycode;
+        this.companyName = companyname;
+        this.registryCode = registrycode;
     }
 
 }
