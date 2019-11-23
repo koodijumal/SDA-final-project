@@ -49,7 +49,7 @@ public class Reservation {
 
     @NotBlank
     private String status;
-// nice
+// nice one
 
 
 
