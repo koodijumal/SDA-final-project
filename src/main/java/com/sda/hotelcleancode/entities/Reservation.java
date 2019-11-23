@@ -22,8 +22,8 @@ public class Reservation {
     public Reservation(@NotBlank Integer room, @NotBlank Integer customer, @NotBlank LocalDate checkindate, @NotBlank LocalDate checkoutdate, @NotBlank String payment, @NotBlank String status) {
         this.room = room;
         this.customer = customer;
-        this.checkindate = checkindate;
-        this.checkoutdate = checkoutdate;
+        this.checkinDate = checkindate;
+        this.checkoutDate = checkoutdate;
         this.payment = payment;
         this.status = status;
     }
@@ -39,10 +39,10 @@ public class Reservation {
     private Integer customer;
 
     @NotBlank
-    private LocalDate checkindate;
+    private LocalDate checkinDate;
 
     @NotBlank
-    private LocalDate checkoutdate;
+    private LocalDate checkoutDate;
 
     @NotBlank
     private String payment;
