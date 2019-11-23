@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -17,24 +19,30 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
     private String firstName;
 
+    @NotNull
     private String lastName;
 
     private String companyName;
 
+    @NotNull
     @Column(unique = true)
     private String registryCode;
 
-    public Customer(String firstname, String lastname, String registrycode) {
+    public Customer(@NotBlank String firstname, @NotBlank String lastname, @NotBlank String registrycode) {
         this.firstName = firstname;
         this.lastName = lastname;
         this.lastName = registrycode;
     }
 
-    public Customer(String companyname, String registrycode) {
+    public Customer(@NotBlank String firstname, @NotBlank String lastname,
+                    @NotBlank String registrycode, String companyname) {
+        this.firstName = firstname;
+        this.lastName = lastname;
+        this.lastName = registrycode;
         this.companyName = companyname;
-        this.registryCode = registrycode;
     }
 
 }
