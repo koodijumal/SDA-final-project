@@ -19,7 +19,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Reservation {
 
-    public Reservation(@NotBlank Integer room, @NotBlank Integer customer, @NotBlank LocalDate checkindate, @NotBlank LocalDate checkoutdate, @NotBlank String payment, @NotBlank String status) {
+    public Reservation(@NotBlank Integer room, @NotBlank Integer customer, @NotBlank LocalDate checkindate, @NotBlank LocalDate checkoutdate, @NotBlank PaymentType payment, @NotBlank ReservationStatus status) {
         this.room = room;
         this.customer = customer;
         this.checkinDate = checkindate;
@@ -45,10 +45,10 @@ public class Reservation {
     private LocalDate checkoutDate;
 
     @NotBlank
-    private String payment;
+    private PaymentType payment;
 
     @NotBlank
-    private String status;
+    private ReservationStatus status;
 // nice one
 
 
