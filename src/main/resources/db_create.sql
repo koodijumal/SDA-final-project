@@ -2,10 +2,10 @@ create table Customer
 (
   id           int auto_increment
     primary key,
-  firstname    varchar(30) null,
-  lastname     varchar(30) null,
+  firstname    varchar(30) not null,
+  lastname     varchar(30) not null,
   companyname  varchar(50) null,
-  registrycode varchar(50) null,
+  registrycode varchar(50) not null,
   constraint Customer_registrycode_uindex
     unique (registrycode)
 );
