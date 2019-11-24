@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
@@ -19,7 +20,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Reservation {
 
-    public Reservation(@NotBlank Integer room, @NotBlank Integer customer, @NotBlank LocalDate checkindate, @NotBlank LocalDate checkoutdate, @NotBlank PaymentType payment, @NotBlank ReservationStatus status) {
+    public Reservation(@NotNull Integer room, @NotNull Integer customer, @NotNull LocalDate checkindate,
+                       @NotNull LocalDate checkoutdate,
+                       @NotNull PaymentType payment, @NotNull ReservationStatus status) {
         this.room = room;
         this.customer = customer;
         this.checkinDate = checkindate;
@@ -32,22 +35,22 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotNull
     private Integer room;
 
-    @NotBlank
+    @NotNull
     private Integer customer;
 
-    @NotBlank
+    @NotNull
     private LocalDate checkinDate;
 
-    @NotBlank
+    @NotNull
     private LocalDate checkoutDate;
 
-    @NotBlank
+    @NotNull
     private PaymentType payment;
 
-    @NotBlank
+    @NotNull
     private ReservationStatus status;
 // nice one
 

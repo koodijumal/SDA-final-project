@@ -22,4 +22,6 @@ public class RoomController {
         roomService.addNewRoom(room);
         return "";
     }
+
+
 }
