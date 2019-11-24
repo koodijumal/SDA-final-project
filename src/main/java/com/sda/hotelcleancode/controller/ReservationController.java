@@ -1,5 +1,7 @@
 package com.sda.hotelcleancode.controller;
 
+import com.sda.hotelcleancode.entities.Customer;
+import com.sda.hotelcleancode.entities.Reservation;
 import com.sda.hotelcleancode.services.CustomerService;
 import com.sda.hotelcleancode.services.ReservationService;
 import com.sda.hotelcleancode.services.RoomService;
@@ -43,6 +45,11 @@ public class ReservationController {
     @GetMapping("/room/checkdates")
     public String getCheckDatePage() {
         return "checkDates";
+    }
+
+    @PostMapping("room/reservation")
+    public String insertCustomerAndReservation(Customer customer, Reservation reservation){
+        return "reservationSuccess";
     }
 
 }
