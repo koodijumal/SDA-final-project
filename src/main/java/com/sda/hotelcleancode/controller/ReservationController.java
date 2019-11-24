@@ -43,11 +43,12 @@ public class ReservationController {
         LocalDate checkIn = LocalDate.parse(dateString1);
         LocalDate checkOut = LocalDate.parse(dateString2);
 
-        ModelAndView modelAndView = new ModelAndView();
-
         List<LocalDate> dates = new ArrayList<>();
         dates.add(checkIn);
         dates.add(checkOut);
+
+
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("dates", dates);
 
         boolean hasRooms = reservationService.isAvailableRoom(checkIn, checkOut);
@@ -55,25 +56,22 @@ public class ReservationController {
             List<RoomType> roomTypes = reservationService.getAvailableRoomTypes(checkIn, checkOut);
             modelAndView.addObject("roomTypes", roomTypes);
             modelAndView.setViewName("checkDatesSuccess");
-            return modelAndView;
-
-            //TODO: return and show already chosen dates for finishing the booking
-            //TODO: return and show which types of rooms are available, and let choose only one of available room types
-            //TODO: create a form for inserting a customer data
-            //TODO: if dates (not any more changeable) are chosen, insert a new Customer and also a new Reservation to database
-
+        } else {
+            modelAndView.setViewName("checkDatesFail");
         }
-        modelAndView.setViewName("checkDatesFail");
         return modelAndView;
     }
+    //TODO: return and show already chosen dates for finishing the booking
+    //TODO: return and show which types of rooms are available, and let choose only one of available room types
+    //TODO: if dates (not any more changeable) are chosen, insert a new Customer and also a new Reservation to database
 
     @GetMapping("/room/checkdates")
     public String getCheckDatePage() {
         return "checkDates";
     }
 
-    @PostMapping("room/reservation")
-    public String insertCustomerAndReservation(Customer customer, Reservation reservation){
+    @PostMapping("reservation/add")
+    public String insertCustomerAndReservation(Customer customer, Reservation reservation) {
         return "reservationSuccess";
     }
 
