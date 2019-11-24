@@ -6,32 +6,34 @@
 </head>
     <body>
         <h5>There are rooms available!</h5>
-        </br>
+        <br>
         <form method="post" action="/reservation/add">
-            <label>Chosen check in date:</label>
-            <input type="date" name="checkinDate" value="">
-            </br>
+
+            <label name="checkinDate">Chosen check in date:
+                <input type="date" name="checkinDate" value="">
+            </label>
+            <br>
             <label>Chosen check out date:</label>
             <input type="date" name="checkoutDate" value="">
-            </br>
-            <label>Choose room type:</label>            </br>
+            <br>
+            <label>Choose room type:</label>            <br>
             <input type="radio" name= "type" value="STANDARD">Standard<br>
             <input type="radio" name= "type" value="DELUXE">Deluxe<br>
-            </br>
+            <br>
             <h5>Please fulfill customer data</h5>
             <label>First Name:</label>
             <input type="text" name="firstName">
-            </br>
+            <br>
             <label>Last Name:</label>
             <input type="text" name="lastName">
-            </br>
+            <br>
             <label>Company name (optional):</label>
             <input type="text" name="companyName">
-            </br>
+            <br>
             <label>Registry code:</label>
             <input type="text" name="registryCode">
-            </br>
-            </br>
+            <br>
+            <br>
 
             <input type="submit" value="Book Room">
         </form>
