@@ -31,14 +31,14 @@ public class Customer {
     @Column(unique = true)
     private String registryCode;
 
-    public Customer(@NotBlank String firstname, @NotBlank String lastname, @NotBlank String registrycode) {
+    public Customer(@NotNull String firstname, @NotNull String lastname, @NotNull String registrycode) {
         this.firstName = firstname;
         this.lastName = lastname;
         this.lastName = registrycode;
     }
 
-    public Customer(@NotBlank String firstname, @NotBlank String lastname,
-                    @NotBlank String registrycode, String companyname) {
+    public Customer(@NotNull String firstname, @NotNull String lastname,
+                    @NotNull String registrycode, String companyname) {
         this.firstName = firstname;
         this.lastName = lastname;
         this.lastName = registrycode;

@@ -1,5 +1,7 @@
 package com.sda.hotelcleancode;
 
+import com.sda.hotelcleancode.entities.Customer;
+import com.sda.hotelcleancode.services.CustomerService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
