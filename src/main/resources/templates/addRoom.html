@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Room</title>
+    </head>
+    <body>
+        <form method="post" action="/room/add">
+            <select name = "type">
+                <option value="STANDARD">Standard</option>
+                <option value="DELUXE">Deluxe</option>
+            </select>
+            <input type="number" name="maxPeople">
+            <select name = "bedType">
+                <option value="TWIN">Twin</option>
+                <option value="FULL">Full</option>
+            </select>
+            <input type="number" step="0.01" name="price">
+            <input type="submit" value="Add Room">
+        </form>
+    </body>
+</html>

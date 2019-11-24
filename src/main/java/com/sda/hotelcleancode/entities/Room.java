@@ -4,10 +4,7 @@ package com.sda.hotelcleancode.entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -20,11 +17,13 @@ public class Room {
     private Integer id;
 
     @NotNull
+    @Enumerated(value = EnumType.STRING)
     private RoomType type;
 
     @NotNull
     private Integer maxPeople;
 
+    @Enumerated(value = EnumType.STRING)
     private RoomBedType bedType;
 
     @NotNull
