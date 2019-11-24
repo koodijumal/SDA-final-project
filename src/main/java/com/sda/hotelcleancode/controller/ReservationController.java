@@ -2,11 +2,12 @@ package com.sda.hotelcleancode.controller;
 
 import com.sda.hotelcleancode.entities.Customer;
 import com.sda.hotelcleancode.entities.Reservation;
+import com.sda.hotelcleancode.entities.Room;
 import com.sda.hotelcleancode.entities.RoomType;
-import com.sda.hotelcleancode.services.CustomerService;
 import com.sda.hotelcleancode.services.ReservationService;
 import com.sda.hotelcleancode.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +25,6 @@ public class ReservationController {
     private RoomService roomService;
 
     @Autowired
-    private CustomerService customerService;
-
-    @Autowired
     private ReservationService reservationService;
 
     @Autowired
@@ -35,25 +33,15 @@ public class ReservationController {
 
     // sisse tulevad kuup'evad, tagasta toad mis ei ole nendel kuup'evadel bronnitud
     @PostMapping("/room/checkdates")
-    public ModelAndView checkAvailability() {
-
-        String dateString1 = request.getParameter("checkinDate");
-        String dateString2 = request.getParameter("checkoutDate");
-
-        LocalDate checkIn = LocalDate.parse(dateString1);
-        LocalDate checkOut = LocalDate.parse(dateString2);
-
-        List<LocalDate> dates = new ArrayList<>();
-        dates.add(checkIn);
-        dates.add(checkOut);
-
+    public ModelAndView checkAvailability(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkinDate, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkoutDate) {
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("dates", dates);
+        modelAndView.addObject("checkinDate", checkinDate);
+        modelAndView.addObject("checkoutDate", checkoutDate);
 
-        boolean hasRooms = reservationService.isAvailableRoom(checkIn, checkOut);
+        boolean hasRooms = reservationService.isAvailableRoom(checkinDate, checkoutDate);
         if (hasRooms) {
-            List<RoomType> roomTypes = reservationService.getAvailableRoomTypes(checkIn, checkOut);
+            List<RoomType> roomTypes = reservationService.getAvailableRoomTypes(checkinDate, checkoutDate);
             modelAndView.addObject("roomTypes", roomTypes);
             modelAndView.setViewName("checkDatesSuccess");
         } else {
@@ -71,7 +59,8 @@ public class ReservationController {
     }
 
     @PostMapping("reservation/add")
-    public String insertCustomerAndReservation(Customer customer, Reservation reservation) {
+    public String insertCustomerAndReservation(Customer customer, Reservation reservation, Room room) {
+        reservationService.addReservation(reservation, customer, room);
         return "reservationSuccess";
     }
 
