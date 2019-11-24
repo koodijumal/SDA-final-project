@@ -2,11 +2,13 @@ package com.sda.hotelcleancode.services;
 
 import com.sda.hotelcleancode.entities.Reservation;
 import com.sda.hotelcleancode.entities.Room;
+import com.sda.hotelcleancode.entities.RoomType;
 import com.sda.hotelcleancode.repositories.ReservationRepository;
 import com.sda.hotelcleancode.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -25,20 +27,38 @@ public class ReservationService {
         return reservationRepository.save(customer);
     }
 
-    public boolean isAvailableRoom(LocalDate checkIn, LocalDate checkOut) {
-        // Get all reservations from table
-        List<Reservation> allReservations = reservationRepository.findAll();
+    public List<RoomType> getAvailableRoomTypes(LocalDate checkIn, LocalDate checkOut) {
+        List<Room> availableRooms = getAvailableRoomsByDates(checkIn, checkOut);
+        List<RoomType> availableRoomTypes = new ArrayList<>();
 
-        // Get ID-s of all the rooms has overlapping dates with given dates
-        List<Integer> bookedRoomIDs = getBookedRoomsIDs(allReservations, checkIn, checkOut);
+        for (Room room: availableRooms) {
+            if (!availableRoomTypes.contains(room.getType())) {
+                availableRoomTypes.add(room.getType());
+            }
+        }
 
-        // Get all rooms from rooms table
-        List<Room> allRooms = roomRepository.findAll();
-
-        return !getAvailableRoomsByBookedIDs(bookedRoomIDs, allRooms).isEmpty();
+        return availableRoomTypes;
     }
 
-    public List<Room> getAvailableRoomsByDates(LocalDate checkIn, LocalDate checkOut) {
+    public boolean isAvailableRoom(LocalDate checkIn, LocalDate checkOut) {
+        return !getAvailableRoomsByDates(checkIn, checkOut).isEmpty();
+    }
+
+//    public boolean isAvailableRoom(LocalDate checkIn, LocalDate checkOut) {
+//        // Get all reservations from table
+//        List<Reservation> allReservations = reservationRepository.findAll();
+//
+//        // Get ID-s of all the rooms has overlapping dates with given dates
+//        List<Integer> bookedRoomIDs = getBookedRoomsIDs(allReservations, checkIn, checkOut);
+//
+//        // Get all rooms from rooms table
+//        List<Room> allRooms = roomRepository.findAll();
+//
+//        // Return list of available rooms
+//        return !getAvailableRoomsByBookedIDs(bookedRoomIDs, allRooms).isEmpty();
+//    }
+
+    private List<Room> getAvailableRoomsByDates(LocalDate checkIn, LocalDate checkOut) {
         // Get all reservations from table
         List<Reservation> allReservations = reservationRepository.findAll();
 
@@ -79,6 +99,7 @@ public class ReservationService {
         }
         return reservedIds;
     }
+
 
 
 
