@@ -2,6 +2,7 @@ package com.sda.hotelcleancode.controller;
 
 import com.sda.hotelcleancode.entities.Customer;
 import com.sda.hotelcleancode.entities.Reservation;
+import com.sda.hotelcleancode.entities.RoomType;
 import com.sda.hotelcleancode.services.CustomerService;
 import com.sda.hotelcleancode.services.ReservationService;
 import com.sda.hotelcleancode.services.RoomService;
@@ -44,12 +45,15 @@ public class ReservationController {
 
         ModelAndView modelAndView = new ModelAndView();
 
+        List<LocalDate> dates = new ArrayList<>();
+        dates.add(checkIn);
+        dates.add(checkOut);
+        modelAndView.addObject("dates", dates);
+
         boolean hasRooms = reservationService.isAvailableRoom(checkIn, checkOut);
         if (hasRooms) {
-            List<LocalDate> dates = new ArrayList<>();
-            dates.add(checkIn);
-            dates.add(checkOut);
-            modelAndView.addObject("dates", dates);
+            List<RoomType> roomTypes = reservationService.getAvailableRoomTypes(checkIn, checkOut);
+            modelAndView.addObject("roomTypes", roomTypes);
             modelAndView.setViewName("checkDatesSuccess");
             return modelAndView;
 
