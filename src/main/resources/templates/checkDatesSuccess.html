@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Rooms available!</title>
 </head>
     <body>
-        <span th:text="${dates}"></span>
-        <span th:text="${roomTypes}"></span>
         <h5>There are rooms available!</h5>
         <br>
         <form method="post" action="/reservation/add">
 
             <label name="checkinDate">Chosen check in date:
-                <input type="date" name="checkinDate" value="">
+                <input type="date" disabled name="checkinDate" th:value="${checkinDate}">
             </label>
             <br>
             <label>Chosen check out date:</label>
-            <input type="date" name="checkoutDate" value="">
+            <input type="date" disabled name="checkoutDate" th:value="${checkoutDate}">
             <br>
             <label>Choose room type:</label>            <br>
-            <input type="radio" name= "type" value="STANDARD">Standard<br>
-            <input type="radio" name= "type" value="DELUXE">Deluxe<br>
+            <div th:each="roomType : ${roomTypes}">
+                <input type="radio" name= "type" th:value="${roomType.name()}" th:text="${roomType.name()}"><br>
+            </div>
+
             <br>
             <h5>Please fulfill customer data</h5>
             <label>First Name:</label>

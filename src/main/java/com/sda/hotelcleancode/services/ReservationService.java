@@ -1,8 +1,7 @@
 package com.sda.hotelcleancode.services;
 
-import com.sda.hotelcleancode.entities.Reservation;
-import com.sda.hotelcleancode.entities.Room;
-import com.sda.hotelcleancode.entities.RoomType;
+import com.sda.hotelcleancode.entities.*;
+import com.sda.hotelcleancode.repositories.CustomerRepository;
 import com.sda.hotelcleancode.repositories.ReservationRepository;
 import com.sda.hotelcleancode.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,27 @@ public class ReservationService {
     @Autowired
     private RoomRepository roomRepository;
 
-    public Reservation addReservation(Reservation customer){
-        return reservationRepository.save(customer);
+    @Autowired
+    private CustomerRepository customerRepository;
+
+    public Reservation addReservation(Reservation reservation, Customer customer, Room room){
+        //Save customer
+        Customer c = customerRepository.save(customer);
+        reservation.setCustomer(c.getId());
+        reservation.setPayment(PaymentType.NOT_PAID);
+        reservation.setStatus(ReservationStatus.ACTIVE);
+
+        RoomType roomType = room.getType();
+        List<Room> availableRooms =
+                getAvailableRoomsByDates(reservation.getCheckinDate(), reservation.getCheckoutDate());
+        for (Room r: availableRooms) {
+            if (r.getType() == roomType) {
+                reservation.setRoom(r.getId());
+            }
+        }
+
+        //save reservation
+        return reservationRepository.save(reservation);
     }
 
     public List<RoomType> getAvailableRoomTypes(LocalDate checkIn, LocalDate checkOut) {
