@@ -13,19 +13,26 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
 
+//    kui lisad edukalt ruumi siis saadab add room lehele
     @GetMapping("/room/add")
     public String getAddRoomPage() {
         return "addRoom";
     }
 
+//kui lisad ruumi siis saadab success lehele
     @PostMapping("/room/add")
     public String addRoom(Room room) {
         roomService.addNewRoom(room);
-        return "addRoom";
+        return "roomAddedSuccess";
+
         //TODO: html page will have form with login for hotel administrator for inserting new rooms (in future)
+
     }
 
-
-
+//    siin miskit vale, ilma selleta korras
+    @GetMapping("/room/addsuccess")
+    public String getAddRoomPageAgain() {
+        return "addRoom";
+    }
 
 }
