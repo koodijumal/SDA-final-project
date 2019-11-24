@@ -1,5 +1,6 @@
 package com.sda.hotelcleancode.controller;
 
+import com.sda.hotelcleancode.entities.RoomType;
 import com.sda.hotelcleancode.services.CustomerService;
 import com.sda.hotelcleancode.services.ReservationService;
 import com.sda.hotelcleancode.services.RoomService;
@@ -29,8 +30,6 @@ public class ReservationController {
     @Autowired
     private HttpServletRequest request;
 
-
-    // sisse tulevad kuup'evad, tagasta toad mis ei ole nendel kuup'evadel bronnitud
     @PostMapping("/room/checkdates")
     public ModelAndView checkAvailability() {
 
@@ -42,12 +41,17 @@ public class ReservationController {
 
         ModelAndView modelAndView = new ModelAndView();
 
+        List<LocalDate> dates = new ArrayList<>();
+        dates.add(checkIn);
+        dates.add(checkOut);
+        modelAndView.addObject("dates", dates);
+
         boolean hasRooms = reservationService.isAvailableRoom(checkIn, checkOut);
         if (hasRooms) {
-            List<LocalDate> dates = new ArrayList<>();
-            dates.add(checkIn);
-            dates.add(checkOut);
-            modelAndView.addObject("dates", dates);
+
+            List<RoomType> roomTypes = reservationService.getAvailableRoomTypes(checkIn, checkOut);
+            modelAndView.addObject("roomTypes", roomTypes);
+
             modelAndView.setViewName("checkDatesSuccess");
             return modelAndView;
 
@@ -65,5 +69,4 @@ public class ReservationController {
     public String getCheckDatePage() {
         return "checkDates";
     }
-
 }
