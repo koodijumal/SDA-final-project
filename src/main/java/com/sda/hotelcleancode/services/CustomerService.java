@@ -18,7 +18,7 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public void addCustomerToDatabase(Customer customer){
-        customerRepository.save(customer);
+    public Customer addCustomerToDatabase(Customer customer){
+        return customerRepository.save(customer);
     }
 }
