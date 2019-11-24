@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>CheckDates</title>
+    </head>
+    <body>
+        <form method="post" action="/room/checkdates">
+            <label >Choose check in date:</label>
+            <input type="date" name="checkinDate">
+            <label> Choose check out date </label>
+            <input type="date"  name="checkoutDate">
+            <input type="submit" value="Check availability">
+        </form>
+        <div>No rooms available for chosen dates, please choose other dates</div>
+    </body>
+</html>
