@@ -27,9 +27,15 @@ public class ReservationController {
     public String checkAvailability() {
         LocalDate checkIn = LocalDate.of(2019, 11, 24);
         LocalDate checkOut = LocalDate.of(2019, 11, 25);
+        //TODO: figure out how to get real dates from HTML pages, we don't have now model for this?
         boolean answer = reservationService.isAvailableRoom(checkIn, checkOut);
         if (answer) {
-            return "roomsAvailableSuccess";
+            return "checkDatesSuccess";
+            //TODO: return and show already chosen dates for finishing the booking
+            //TODO: return and show which types of rooms are available, and let choose only one of available room types
+            //TODO: create a form for inserting a customer data
+            //TODO: if dates (not any more changeable) are chosen, insert a new Customer and also a new Reservation to database
+
         }
         return "checkDatesFail";
     }
