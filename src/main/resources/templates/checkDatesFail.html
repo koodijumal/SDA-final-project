@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <title>CheckDates</title>
@@ -7,11 +7,16 @@
     <body>
         <form method="post" action="/room/checkdates">
             <label >Choose check in date:</label>
-            <input type="date" name="checkinDate">
+            <input type="date" name="checkinDate" id="todayDate" min="2019-11-30">
             <label> Choose check out date </label>
-            <input type="date"  name="checkoutDate">
-            <input type="submit" value="Check availability">
+            <input type="date"  name="checkoutDate" id="tomorrowDate" min="2019-12-01" onchange="compare();">
+            <input type="submit" value="Check availability" id="submitButton" disabled onchange="compare();">
         </form>
+        <div id="dateErrorMessage" hidden>You can't check out before you check in!</div>
+        <div id="emptyDateErrorMessage" hidden>You must enter valid date!</div>
         <div>No rooms available for chosen dates, please choose other dates</div>
+
+        <script type="text/javascript" src="/checkDates.js"></script>
+
     </body>
 </html>
