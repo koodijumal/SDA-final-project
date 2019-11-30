@@ -48,9 +48,9 @@ public class ReservationController {
         }
         return modelAndView;
     }
-    //TODO: return and show already chosen dates for finishing the booking
-    //TODO: return and show which types of rooms are available, and let choose only one of available room types
-    //TODO: if dates (not any more changeable) are chosen, insert a new Customer and also a new Reservation to database
+
+
+
 
     @GetMapping("/room/checkdates")
     public String getCheckDatePage() {
@@ -59,6 +59,7 @@ public class ReservationController {
 
     @PostMapping("reservation/add")
     public String insertCustomerAndReservation(Customer customer, Reservation reservation, RoomType roomType) {
+        //TODO check customer.registryCode and then don't add to customer datatable
         reservationService.addReservation(reservation, customer, roomType);
         return "reservationSuccess";
     }
