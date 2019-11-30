@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -16,38 +17,26 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Reservation {
 
-    public Reservation(@NotNull Integer room, @NotNull Integer customer, @NotNull LocalDate checkindate,
-                       @NotNull LocalDate checkoutdate,
-                       @NotNull PaymentType payment, @NotNull ReservationStatus status) {
-        this.room = room;
-        this.customer = customer;
-        this.checkinDate = checkindate;
-        this.checkoutDate = checkoutdate;
-        this.payment = payment;
-        this.status = status;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
     private Integer room;
 
     @NotNull
     private Integer customer;
 
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkinDate;
 
     @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate checkoutDate;
 
-    @NotNull
     @Enumerated(value = EnumType.STRING)
     private PaymentType payment;
 
-    @NotNull
     @Enumerated(value = EnumType.STRING)
     private ReservationStatus status;
 // nice one

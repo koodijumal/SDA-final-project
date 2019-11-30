@@ -2,7 +2,6 @@ package com.sda.hotelcleancode.controller;
 
 import com.sda.hotelcleancode.entities.Customer;
 import com.sda.hotelcleancode.entities.Reservation;
-import com.sda.hotelcleancode.entities.Room;
 import com.sda.hotelcleancode.entities.RoomType;
 import com.sda.hotelcleancode.services.ReservationService;
 import com.sda.hotelcleancode.services.RoomService;
@@ -15,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,6 +32,7 @@ public class ReservationController {
     // sisse tulevad kuup'evad, tagasta toad mis ei ole nendel kuup'evadel bronnitud
     @PostMapping("/room/checkdates")
     public ModelAndView checkAvailability(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkinDate, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkoutDate) {
+
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("checkinDate", checkinDate);
@@ -59,8 +58,8 @@ public class ReservationController {
     }
 
     @PostMapping("reservation/add")
-    public String insertCustomerAndReservation(Customer customer, Reservation reservation, Room room) {
-        reservationService.addReservation(reservation, customer, room);
+    public String insertCustomerAndReservation(Customer customer, Reservation reservation, RoomType roomType) {
+        reservationService.addReservation(reservation, customer, roomType);
         return "reservationSuccess";
     }
 
