@@ -7,10 +7,10 @@
     <body>
         <form method="post" action="/room/checkdates">
             <label >Choose check in date:</label>
-            <input type="date" name="checkinDate" id="todayDate">
+            <input type="date" name="checkinDate" id="todayDate" min="2019-11-30">
             <label> Choose check out date </label>
-            <input type="date"  name="checkoutDate" id="tomorrowDate">
-            <input type="submit" value="Check availability">
+            <input type="date"  name="checkoutDate" id="tomorrowDate" min="2019-12-01">
+            <input type="submit" value="Check availability" id="submitButton" disabled>
         </form>
 
         <script>
@@ -44,6 +44,9 @@
             console.log(tomorrow);
             document.getElementById("todayDate").defaultValue =today+"";
             document.getElementById("tomorrowDate").defaultValue =tomorrow+"";
+            document.getElementById("todayDate").setAttribute("min", today+"");
+            document.getElementById("tomorrowDate").setAttribute("min", tomorrow+"");
+            document.getElementById("submitButton").disabled = false;
         </script>
 
     </body>
