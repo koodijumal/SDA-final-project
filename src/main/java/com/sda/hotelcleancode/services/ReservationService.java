@@ -25,16 +25,24 @@ public class ReservationService {
     private CustomerRepository customerRepository;
 
     @Transactional
-    public Reservation addReservation(Reservation reservation, Customer customer, RoomType roomType){
+    public Reservation addReservation(Reservation reservation, Customer customer, RoomType roomType) {
         //Save customer
-        Customer c = customerRepository.save(customer);
-        reservation.setCustomer(c.getId());
+        //TODO check customer.registryCode and then don't add to customer datatable
+
+        Customer existingCustomer = customerRepository.findCustomerByRegistryCode(customer.getRegistryCode());
+        Customer c;
+        if (existingCustomer == null) {
+            c = customerRepository.save(customer);
+            reservation.setCustomer(c.getId());
+        } else {
+            reservation.setCustomer(existingCustomer.getId());
+        }
         reservation.setPayment(PaymentType.NOT_PAID);
         reservation.setStatus(ReservationStatus.ACTIVE);
 
         List<Room> availableRooms =
                 getAvailableRoomsByDates(reservation.getCheckinDate(), reservation.getCheckoutDate());
-        for (Room r: availableRooms) {
+        for (Room r : availableRooms) {
             if (r.getType() == roomType) {
                 reservation.setRoom(r.getId());
                 break;
@@ -49,7 +57,7 @@ public class ReservationService {
         List<Room> availableRooms = getAvailableRoomsByDates(checkIn, checkOut);
         List<RoomType> availableRoomTypes = new ArrayList<>();
 
-        for (Room room: availableRooms) {
+        for (Room room : availableRooms) {
             if (!availableRoomTypes.contains(room.getType())) {
                 availableRoomTypes.add(room.getType());
             }
@@ -106,19 +114,17 @@ public class ReservationService {
         List<Integer> reservedIds = new ArrayList<>();
 
         // If reservation has overlapping date with given dates then add the room id to reservedIDs list.
-        for (Reservation res: allReservations) {
+        for (Reservation res : allReservations) {
             if ((res.getCheckinDate().compareTo(checkIn) >= 0 && res.getCheckinDate().compareTo(checkOut) <= 0)
-            || (res.getCheckoutDate().compareTo(checkIn) >= 0 && res.getCheckoutDate().compareTo(checkOut) <= 0)) {
+                    || (res.getCheckoutDate().compareTo(checkIn) >= 0 && res.getCheckoutDate().compareTo(checkOut) <= 0)) {
                 // if room id is not in list already then add it
-                if (!reservedIds.contains(res.getRoom())){
+                if (!reservedIds.contains(res.getRoom())) {
                     reservedIds.add(res.getRoom());
                 }
             }
         }
         return reservedIds;
     }
-
-
 
 
 }
