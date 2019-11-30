@@ -24,8 +24,6 @@ if(mm_tomorrow<10){
 
 today = yyyy+'-'+mm+'-'+dd;
 tomorrow = yyyy_tomorrow+'-'+mm_tomorrow+'-'+dd_tomorrow;
-console.log(today);
-console.log(tomorrow);
 document.getElementById("todayDate").defaultValue =today+"";
 document.getElementById("tomorrowDate").defaultValue =tomorrow+"";
 document.getElementById("todayDate").setAttribute("min", today+"");
@@ -38,20 +36,22 @@ function compare()
     var endDt = document.getElementById("tomorrowDate").value;
 
     if ((!startDt || !endDt)){
-        document.getElementById("submitButton").disabled = true;
+        // document.getElementById("submitButton").disabled = true;
         document.getElementById("emptyDateErrorMessage").hidden = false;
         document.getElementById("dateErrorMessage").hidden = true;
+        return false;
     }
     else if((new Date(startDt).getTime() >= new Date(endDt).getTime()))
     {
-        document.getElementById("submitButton").disabled = true;
+        // document.getElementById("submitButton").disabled = true;
         document.getElementById("dateErrorMessage").hidden = false;
         document.getElementById("emptyDateErrorMessage").hidden = true;
-
+        return false;
     }
     else {
-        document.getElementById("submitButton").disabled = false;
+        // document.getElementById("submitButton").disabled = false;
         document.getElementById("emptyDateErrorMessage").hidden = true;
         document.getElementById("dateErrorMessage").hidden = true;
+        return true;
     }
 }

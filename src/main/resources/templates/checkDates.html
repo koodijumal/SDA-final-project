@@ -11,7 +11,7 @@
             <input type="date" name="checkinDate" id="todayDate" min="2019-11-30">
             <label> Choose check out date </label>
             <input type="date"  name="checkoutDate" id="tomorrowDate" min="2019-12-01" onchange="compare();">
-            <input type="submit" value="Check availability" id="submitButton" disabled onclick="compare();">
+            <input type="submit" value="Check availability" id="submitButton" onclick="return compare();">
         </form>
         <div id="dateErrorMessage" hidden class="badge badge-danger">You can't check out before you check in!</div>
         <div id="emptyDateErrorMessage" hidden class="badge badge-danger">You must enter valid date!</div>
