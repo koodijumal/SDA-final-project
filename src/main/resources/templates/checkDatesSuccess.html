@@ -17,7 +17,7 @@
             <br>
             <label>Choose room type:</label>            <br>
             <div th:each="roomType : ${roomTypes}">
-                <input type="radio" name= "roomType" th:value="${roomType.name()}" th:text="${roomType.name()}"><br>
+                <input type="radio" required name= "roomType" th:value="${roomType.name()}" th:text="${roomType.name()}"><br>
             </div>
 
             <br>
