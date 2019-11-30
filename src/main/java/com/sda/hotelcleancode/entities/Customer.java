@@ -26,18 +26,4 @@ public class Customer {
     @Column(unique = true)
     private String registryCode;
 
-    public Customer(@NotNull String firstname, @NotNull String lastname, @NotNull String registrycode) {
-        this.firstName = firstname;
-        this.lastName = lastname;
-        this.registryCode = registrycode;
-    }
-
-    public Customer(@NotNull String firstname, @NotNull String lastname,
-                    @NotNull String registrycode, String companyname) {
-        this.firstName = firstname;
-        this.lastName = lastname;
-        this.registryCode = registrycode;
-        this.companyName = companyname;
-    }
-
 }

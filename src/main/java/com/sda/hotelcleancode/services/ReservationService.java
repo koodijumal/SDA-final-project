@@ -6,9 +6,8 @@ import com.sda.hotelcleancode.repositories.ReservationRepository;
 import com.sda.hotelcleancode.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +24,20 @@ public class ReservationService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public Reservation addReservation(Reservation reservation, Customer customer, Room room){
+    @Transactional
+    public Reservation addReservation(Reservation reservation, Customer customer, RoomType roomType){
         //Save customer
         Customer c = customerRepository.save(customer);
         reservation.setCustomer(c.getId());
         reservation.setPayment(PaymentType.NOT_PAID);
         reservation.setStatus(ReservationStatus.ACTIVE);
 
-        RoomType roomType = room.getType();
         List<Room> availableRooms =
                 getAvailableRoomsByDates(reservation.getCheckinDate(), reservation.getCheckoutDate());
         for (Room r: availableRooms) {
             if (r.getType() == roomType) {
                 reservation.setRoom(r.getId());
+                break;
             }
         }
 

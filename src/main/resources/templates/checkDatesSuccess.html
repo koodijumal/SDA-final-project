@@ -9,16 +9,15 @@
         <br>
         <form method="post" action="/reservation/add">
 
-            <label name="checkinDate">Chosen check in date:
-                <input type="date" disabled name="checkinDate" th:value="${checkinDate}">
-            </label>
+            <label>Chosen check in date:</label>
+            <input type="date" readonly name="checkinDate" th:value="${checkinDate}">
             <br>
             <label>Chosen check out date:</label>
-            <input type="date" disabled name="checkoutDate" th:value="${checkoutDate}">
+            <input type="date" readonly name="checkoutDate" th:value="${checkoutDate}">
             <br>
             <label>Choose room type:</label>            <br>
             <div th:each="roomType : ${roomTypes}">
-                <input type="radio" name= "type" th:value="${roomType.name()}" th:text="${roomType.name()}"><br>
+                <input type="radio" name= "roomType" th:value="${roomType.name()}" th:text="${roomType.name()}"><br>
             </div>
 
             <br>
