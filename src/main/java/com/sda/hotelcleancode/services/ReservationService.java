@@ -30,9 +30,9 @@ public class ReservationService {
         //TODO check customer.registryCode and then don't add to customer datatable
 
         Customer existingCustomer = customerRepository.findCustomerByRegistryCode(customer.getRegistryCode());
-        Customer c;
+
         if (existingCustomer == null) {
-            c = customerRepository.save(customer);
+           Customer c = customerRepository.save(customer);
             reservation.setCustomer(c.getId());
         } else {
             reservation.setCustomer(existingCustomer.getId());
