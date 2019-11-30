@@ -42,7 +42,7 @@ function compare()
         document.getElementById("emptyDateErrorMessage").hidden = false;
         document.getElementById("dateErrorMessage").hidden = true;
     }
-    else if((new Date(startDt).getTime() > new Date(endDt).getTime()))
+    else if((new Date(startDt).getTime() >= new Date(endDt).getTime()))
     {
         document.getElementById("submitButton").disabled = true;
         document.getElementById("dateErrorMessage").hidden = false;

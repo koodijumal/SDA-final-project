@@ -3,8 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <title>CheckDates</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <body>
+        <div class="alert alert-danger" role="alert">No rooms available for chosen dates, please choose other dates</div>
         <form method="post" action="/room/checkdates">
             <label >Choose check in date:</label>
             <input type="date" name="checkinDate" id="todayDate" min="2019-11-30">
@@ -12,9 +14,8 @@
             <input type="date"  name="checkoutDate" id="tomorrowDate" min="2019-12-01" onchange="compare();">
             <input type="submit" value="Check availability" id="submitButton" disabled onchange="compare();">
         </form>
-        <div id="dateErrorMessage" hidden>You can't check out before you check in!</div>
-        <div id="emptyDateErrorMessage" hidden>You must enter valid date!</div>
-        <div>No rooms available for chosen dates, please choose other dates</div>
+        <div id="dateErrorMessage" hidden class="badge badge-danger">You can't check out before you check in!</div>
+        <div id="emptyDateErrorMessage" hidden class="badge badge-danger">You must enter valid date!</div>
 
         <script type="text/javascript" src="/checkDates.js"></script>
 
