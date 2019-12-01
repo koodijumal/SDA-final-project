@@ -1,3 +1,5 @@
+
+--for creating login we need user and role tables
 create table user
 (
     id        int auto_increment
