@@ -28,7 +28,6 @@ document.getElementById("todayDate").defaultValue =today+"";
 document.getElementById("tomorrowDate").defaultValue =tomorrow+"";
 document.getElementById("todayDate").setAttribute("min", today+"");
 document.getElementById("tomorrowDate").setAttribute("min", tomorrow+"");
-document.getElementById("submitButton").disabled = false;
 
 function compare()
 {
