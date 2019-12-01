@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
+@RequestMapping("/reservation")
 public class ReservationController {
 
     @Autowired
@@ -30,7 +32,7 @@ public class ReservationController {
 
 
     // sisse tulevad kuup'evad, tagasta toad mis ei ole nendel kuup'evadel bronnitud
-    @PostMapping("/room/checkdates")
+    @PostMapping("/checkdates")
     public ModelAndView checkAvailability(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkinDate, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkoutDate) {
 
 
@@ -52,12 +54,12 @@ public class ReservationController {
 
 
 
-    @GetMapping("/room/checkdates")
+    @GetMapping("/checkdates")
     public String getCheckDatePage() {
         return "checkDates";
     }
 
-    @PostMapping("reservation/add")
+    @PostMapping("/add")
     public String insertCustomerAndReservation(Customer customer, Reservation reservation, RoomType roomType) {
         //TODO check customer.registryCode and then don't add to customer datatable
         reservationService.addReservation(reservation, customer, roomType);

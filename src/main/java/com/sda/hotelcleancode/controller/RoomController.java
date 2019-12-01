@@ -6,21 +6,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/room")
 public class RoomController {
 
     @Autowired
     private RoomService roomService;
 
 //    kui lisad edukalt ruumi siis saadab add room lehele
-    @GetMapping("/room/add")
+    @GetMapping("/add")
     public String getAddRoomPage() {
         return "addRoom";
     }
 
 //kui lisad ruumi siis saadab success lehele
-    @PostMapping("/room/add")
+    @PostMapping("/add")
     public String addRoom(Room room) {
         roomService.addNewRoom(room);
         return "roomAddedSuccess";
@@ -30,7 +32,7 @@ public class RoomController {
     }
 
 //    siin miskit vale, ilma selleta korras
-    @GetMapping("/room/addsuccess")
+    @GetMapping("/addsuccess")
     public String getAddRoomPageAgain() {
         return "addRoom";
     }

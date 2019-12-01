@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="alert alert-danger" role="alert">No rooms available for chosen dates, please choose other dates</div>
-        <form method="post" action="/room/checkdates">
+        <form method="post" action="/reservation/checkdates">
             <label >Choose check in date:</label>
             <input type="date" name="checkinDate" id="todayDate" min="2019-11-30">
             <label> Choose check out date </label>
@@ -17,7 +17,7 @@
         <div id="dateErrorMessage" hidden class="badge badge-danger">Check out date must be at least one day after check in date!</div>
         <div id="emptyDateErrorMessage" hidden class="badge badge-danger">You must enter valid date!</div>
 
-        <script type="text/javascript" src="/checkDates.js"></script>
+        <script type="text/javascript" src="/js/checkDates.js"></script>
 
     </body>
 </html>

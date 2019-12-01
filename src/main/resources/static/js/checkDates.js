@@ -49,8 +49,8 @@ function compare()
     }
     else {
         // document.getElementById("submitButton").disabled = false;
-        document.getElementById("emptyDateErrorMessage").hidden = true;
-        document.getElementById("dateErrorMessage").hidden = true;
+       document.getElementById("emptyDateErrorMessage").hidden = true;
+      document.getElementById("dateErrorMessage").hidden = true;
         return true;
     }
 }

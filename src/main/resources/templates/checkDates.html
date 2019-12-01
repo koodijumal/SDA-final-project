@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <body>
-        <form method="post" action="/room/checkdates">
+        <form method="post" action="/reservation/checkdates">
             <label >Choose check in date:</label>
             <input type="date" name="checkinDate" id="todayDate" min="2019-11-30">
             <label> Choose check out date </label>
@@ -17,6 +17,6 @@
         <div id="emptyDateErrorMessage" hidden class="badge badge-danger">You must enter valid date!</div>
 
 
-        <script type="text/javascript" src="/checkDates.js"></script>
+        <script type="text/javascript" src="/js/checkDates.js"></script>
     </body>
 </html>
