@@ -30,8 +30,6 @@
         document.getElementById("tomorrowDate").defaultValue =tomorrow+"";
         document.getElementById("todayDate").setAttribute("min", today+"");
         document.getElementById("tomorrowDate").setAttribute("min", tomorrow+"");
-        today = dd+"-"+mm+"-"+yyyy;
-        document.getElementById("currentDateFooter").innerHTML = today;
     }
     document.addEventListener("DomContentLoaded", render())
 })();
