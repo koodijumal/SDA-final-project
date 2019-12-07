@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/reservation/**", "/js/**","/","/contact").permitAll()
+                .antMatchers("/reservation/**", "/js/**", "/css/**", "/", "/contact").permitAll()
                 //.antMatchers("/room/add").hasRole("ROOM_WRITE")
                 .anyRequest().authenticated().and()
                 .formLogin().loginPage("/login").permitAll();
