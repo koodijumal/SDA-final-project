@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
-                .antMatchers("/reservation/**", "/js/**").permitAll()
+                .antMatchers("/reservation/**", "/js/**", "/contact").permitAll()
                 //.antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated().and()
                 .formLogin().loginPage("/login").permitAll();
