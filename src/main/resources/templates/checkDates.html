@@ -113,15 +113,16 @@
             <div class="row justify-content-md-center">
                 <div class="card w-50">
                     <div class="card-body">
+                        <div class="alert alert-danger" role="alert" th:if="${noRoomsAlert}" th:text="${noRoomsAlert}"></div>
                         <h5 class="card-title">Make a reservation</h5>
                         <form method="post" action="/reservation/checkdates">
                             <div class="form-group">
                                 <label for="todayDate">Choose check in date:</label>
-                                <input class="form-control" type="date" name="checkinDate" id="todayDate" min="2019-11-30">
+                                <input class="form-control" type="date" name="checkinDate" id="todayDate" min="2019-11-30" th:value="${checkinDate}">
                             </div>
                             <div class="form-group">
                                 <label for="tomorrowDate"> Choose check out date </label>
-                                <input class="form-control" type="date"  name="checkoutDate" id="tomorrowDate" min="2019-12-01" onchange="compare();">
+                                <input class="form-control" type="date"  name="checkoutDate" id="tomorrowDate" min="2019-12-01" onchange="compare();" th:value="${checkoutDate}">
                             </div>
                             <input class="btn btn-primary mb-2" type="submit" value="Check availability" id="submitButton" onclick="return compare();">
                         </form>

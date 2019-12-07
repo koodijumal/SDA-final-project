@@ -30,10 +30,10 @@
                             <form method="post" action="/reservation/add">
                                 <div class="form-group">
                                     <b>Chosen check in date: </b><span th:text="${checkinDate}"></span>
-                                    <input type="date" id="checkInDate" hidden name="checkinDate" >
+                                    <input type="date" id="checkInDate" hidden name="checkinDate" th:value="${checkinDate}">
                                     <br>
                                     <b>Chosen check out date: </b><span th:text="${checkoutDate}"></span>
-                                    <input type="date" id="checkOutDate" hidden name="checkoutDate" >
+                                    <input type="date" id="checkOutDate" hidden name="checkoutDate" th:value="${checkoutDate}">
                                     <br>
                                 </div>
 
