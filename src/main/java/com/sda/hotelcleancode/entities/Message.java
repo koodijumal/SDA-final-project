@@ -22,6 +22,6 @@ public class Message {
     private String email;
 
     @NotNull
-    private String content;
+    private String content;//don't use message here!
 
 }
