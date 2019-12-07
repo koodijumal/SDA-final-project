@@ -8,12 +8,14 @@ import com.sda.hotelcleancode.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -60,7 +62,7 @@ public class ReservationController {
     }
 
     @PostMapping("/add")
-    public String insertCustomerAndReservation(Customer customer, Reservation reservation, RoomType roomType) {
+    public String insertCustomerAndReservation(@Valid Customer customer, Reservation reservation, RoomType roomType) {
         //TODO check customer.registryCode and then don't add to customer datatable
         reservationService.addReservation(reservation, customer, roomType);
         return "reservationSuccess";
