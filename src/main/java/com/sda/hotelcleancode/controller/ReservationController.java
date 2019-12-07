@@ -35,7 +35,6 @@ public class ReservationController {
     @PostMapping("/checkdates")
     public ModelAndView checkAvailability(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkinDate, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate checkoutDate) {
 
-
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("checkinDate", checkinDate);
         modelAndView.addObject("checkoutDate", checkoutDate);
@@ -46,7 +45,8 @@ public class ReservationController {
             modelAndView.addObject("roomTypes", roomTypes);
             modelAndView.setViewName("checkDatesSuccess");
         } else {
-            modelAndView.setViewName("checkDatesFail");
+            modelAndView.addObject("noRoomsAlert", "There are no available rooms for selected dates :(");
+            modelAndView.setViewName("checkDates");
         }
         return modelAndView;
     }
